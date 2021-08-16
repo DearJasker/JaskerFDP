@@ -1,0 +1,38 @@
+{
+    "parent": "item/.",
+    "textures": {
+        "layer0": "entity/qq1525215723/zhongyufei"
+    },
+"display": {
+    "thirdperson": {
+        "rotation": [ -90, 90, -90 ],
+        "translation": [ 0, 1.5, -2 ],
+        "scale": [ 1.5, 1.5, 1.5 ]
+    },
+    "head": {
+        "rotation": [ -180, 0, -50 ],
+        "translation": [ -4, -4, 2 ],
+        "scale": [ 1.5, 1.5, 1.5 ]
+    },
+    "ground": {
+        "rotation": [ 0, 0, 0 ],
+        "translation": [ 0, 1, 0 ],
+        "scale": [ 10, 10, 10 ]
+    },
+    "fixed": {
+        "rotation": [ 0, 0, 0 ],
+        "translation": [ 0, -2, 0 ],
+        "scale": [ 1.5, 1.5, 1.5 ]
+    },
+    "firstperson": {
+        "rotation": [ -10, 115, -5 ],
+        "translation": [ 0, 3, 0 ],
+        "scale": [ 1.2, 1.2, 1.2 ]
+    },
+    "gui": {
+        "rotation": [ 0, 0, 0 ],
+        "translation": [ 0, 0, 0 ],
+        "scale": [ 1.6, 1.6, 1.6 ]
+    }
+}
+}
