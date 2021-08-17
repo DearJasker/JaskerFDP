@@ -22,15 +22,17 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
             return
         }
 
+        val windowWidth = (this.width).toInt()
+        val windowHeight = (this.height).toInt()
         val defaultHeight = (this.height / 3.5).toInt()
 
-        this.buttonList.add(GuiButton(1, this.width / 2 - 50, defaultHeight, 100, 20, I18n.format("menu.singleplayer")))
-        this.buttonList.add(GuiButton(2, this.width / 2 - 50, defaultHeight + 24, 100, 20, I18n.format("menu.multiplayer")))
-        this.buttonList.add(GuiButton(100, this.width / 2 - 50, defaultHeight + 24*2, 100, 20, "%ui.altmanager%"))
-        this.buttonList.add(GuiButton(103, this.width / 2 - 50, defaultHeight + 24*3, 100, 20, "%ui.mods%"))
-        this.buttonList.add(GuiButton(102, this.width / 2 - 50, defaultHeight + 24*4, 100, 20, "%ui.background%"))
-        this.buttonList.add(GuiButton(0, this.width / 2 - 50, defaultHeight + 24*5, 100, 20, I18n.format("menu.options")))
-        this.buttonList.add(GuiButton(4, this.width / 2 - 50, defaultHeight + 24*6, 100, 20, I18n.format("menu.quit")))
+        this.buttonList.add(GuiButton(1, 25, defaultHeight, 100, 20, I18n.format("menu.singleplayer")))
+        this.buttonList.add(GuiButton(2, 25, defaultHeight + 24, 100, 20, I18n.format("menu.multiplayer")))
+        this.buttonList.add(GuiButton(100, windowWidth - 100, 20, 75, 20, "%ui.altmanager%"))
+        this.buttonList.add(GuiButton(103, windowWidth - 100, 20 + 24, 75, 20, "%ui.mods%"))
+        this.buttonList.add(GuiButton(102, windowWidth - 100, 20 + 24*2, 75, 20, "%ui.background%"))
+        this.buttonList.add(GuiButton(0, 25, defaultHeight + 24*2, 100, 20, I18n.format("menu.options")))
+        this.buttonList.add(GuiButton(4, 25, defaultHeight + 24*3, 100, 20, I18n.format("menu.quit")))
 
         super.initGui()
     }
@@ -40,9 +42,9 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
 
         val bHeight=(this.height / 3.5).toInt()
 
-        Gui.drawRect(width / 2 - 60, bHeight - 30, width / 2 + 60, bHeight + 174, Integer.MIN_VALUE)
+        //Gui.drawRect(width / 2 - 100, bHeight - 30, width / 2 + 100, bHeight + 174, Integer.MIN_VALUE)
 
-        Fonts.font40.drawCenteredString(LiquidBounce.CLIENT_NAME,(width / 2).toFloat(), (bHeight - 20).toFloat(),Color.WHITE.rgb,false)
+        Fonts.font40.drawCenteredString(LiquidBounce.CLIENT_NAME,75.toFloat(), (bHeight - 30).toFloat(),Color.WHITE.rgb,false)
         Fonts.font40.drawString(LiquidBounce.CLIENT_VERSION+if(LiquidBounce.latestVersion.isNotEmpty()){" §c-> §a"+LiquidBounce.latestVersion}else{""}
             , 3F, (height - Fonts.font35.FONT_HEIGHT).toFloat(), 0xffffff,  false)
         val str="§c%ui.group%: §f${LiquidBounce.qqgroup}"

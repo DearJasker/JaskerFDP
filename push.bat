@@ -1,6 +1,4 @@
-git init
-git add .
-git commit -m "WWAC NoSlow"
-git remote add origin git@github.com:dearjasker/JaskerFDP.git
+git add -u
+git commit -m "Update MainUI"
 git push -u -f origin master
 pause
