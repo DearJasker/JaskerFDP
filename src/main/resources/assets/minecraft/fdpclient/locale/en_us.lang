@@ -1,8 +1,7 @@
 # Translated by Liuli and DearJasker
-ui.altmanager=Alt
+ui.altmanager=AltManager
 ui.mods=Mod
 ui.background=Background
-ui.group=QQGroup
 ui.serverSpoof=ServerSpoof
 ui.antiForge=AntiForge
 ui.reconnect=Reconnect

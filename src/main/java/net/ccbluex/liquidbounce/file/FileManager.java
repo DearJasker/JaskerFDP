@@ -40,7 +40,7 @@ public class FileManager extends MinecraftInstance {
     public final HudConfig hudConfig = new HudConfig(new File(dir, "hud.json"));
     public final SpecialConfig specialConfig = new SpecialConfig(new File(dir, "special.json"));
 
-    public final File backgroundFile = new File(dir, "userbackground.png");
+    public final File  backgroundFile = new File(dir, "userbackground.png");
 
     public static final Gson PRETTY_GSON = new GsonBuilder().setPrettyPrinting().create();
 

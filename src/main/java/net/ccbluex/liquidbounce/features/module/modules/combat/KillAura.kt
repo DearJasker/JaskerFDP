@@ -29,6 +29,8 @@ import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityArmorStand
+import net.minecraft.item.ItemAxe
+import net.minecraft.item.ItemPickaxe
 import net.minecraft.item.ItemSword
 import net.minecraft.network.play.client.*
 import net.minecraft.potion.Potion
@@ -45,6 +47,7 @@ import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.sin
 
+// TODO: Recode KillAura mark
 @ModuleInfo(name = "KillAura", category = ModuleCategory.COMBAT, keyBind = Keyboard.KEY_R)
 class KillAura : Module() {
 
@@ -58,7 +61,7 @@ class KillAura : Module() {
             val i = minCPS.get()
             if (i > newValue) set(i)
 
-            attackDelay = TimeUtils.randomClickDelay(minCPS.get(), this.get())
+            attackDelay = getAttackDelay(minCPS.get(), this.get())
         }
     }
 
@@ -67,11 +70,12 @@ class KillAura : Module() {
             val i = maxCPS.get()
             if (i < newValue) set(i)
 
-            attackDelay = TimeUtils.randomClickDelay(this.get(), maxCPS.get())
+            attackDelay = getAttackDelay(this.get(), maxCPS.get())
         }
     }
 
     private val hurtTimeValue = IntegerValue("HurtTime", 10, 0, 10)
+    private val combatDelayValue = BoolValue("1.9CombatDelay", false)
 
     // Range
     val rangeValue = object : FloatValue("Range", 3.7f, 1f, 8f) {
@@ -98,7 +102,7 @@ class KillAura : Module() {
     private val keepSprintValue = BoolValue("KeepSprint", true)
 
     // AutoBlock
-    private val autoBlockValue = ListValue("AutoBlock", arrayOf("Range", "Off"),"Off")
+    val autoBlockValue = ListValue("AutoBlock", arrayOf("Range", "Fake", "Off"),"Off")
     private val autoBlockRangeValue = object : FloatValue("AutoBlockRange", 2.5f, 0f, 8f) {
         override fun onChanged(oldValue: Float, newValue: Float) {
             val i = discoverRangeValue.get()
@@ -376,11 +380,10 @@ class KillAura : Module() {
             discoveredTargets.clear()
             inRangeDiscoveredTargets.clear()
         }
-        if (currentTarget != null && attackTimer.hasTimePassed(attackDelay) &&
-            currentTarget!!.hurtTime <= hurtTimeValue.get()) {
+        if (currentTarget != null && attackTimer.hasTimePassed(attackDelay) && currentTarget!!.hurtTime <= hurtTimeValue.get()) {
             clicks++
             attackTimer.reset()
-            attackDelay = TimeUtils.randomClickDelay(minCPS.get(), maxCPS.get())
+            attackDelay = getAttackDelay(minCPS.get(), maxCPS.get())
         }
 
         when(markValue.get().toLowerCase()){
@@ -799,6 +802,28 @@ class KillAura : Module() {
             mc.netHandler.addToSendQueue(C07PacketPlayerDigging(C07PacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, EnumFacing.DOWN))
             blockingStatus = false
         }
+    }
+
+    /**
+     * Attack Delay
+     */
+    private fun getAttackDelay(minCps: Int, maxCps: Int):Long{
+        var delay=TimeUtils.randomClickDelay(minCps.coerceAtMost(maxCps), minCps.coerceAtLeast(maxCps))
+        if(combatDelayValue.get()){
+            var value=4.0
+            if(mc.thePlayer.inventory.getCurrentItem()!=null){
+                val currentItem=mc.thePlayer.inventory.getCurrentItem().item
+                if(currentItem is ItemSword){
+                    value-=2.4
+                }else if(currentItem is ItemPickaxe){
+                    value-=2.8
+                }else if(currentItem is ItemAxe){
+                    value-=3
+                }
+            }
+            delay=delay.coerceAtLeast((1000 / value).toLong())
+        }
+        return delay
     }
 
     /**

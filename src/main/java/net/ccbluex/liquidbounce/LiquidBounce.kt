@@ -40,8 +40,8 @@ object LiquidBounce {
 
     // Client information
     const val CLIENT_NAME = "JaskerFDP"
-    const val COLORED_NAME = "§c§lFDP§6§lClient"
-    const val CLIENT_REAL_VERSION = "BetaBuild"
+    const val COLORED_NAME = "§c§lJasker§6§lFDP"
+    const val CLIENT_REAL_VERSION = "081921 Build2201A"
     const val CLIENT_CREATOR = "CCBlueX & UnlegitMC & DearJasker"
     const val MINECRAFT_VERSION = "1.8.9"
 
@@ -74,9 +74,8 @@ object LiquidBounce {
     // Update information
     var latestVersion = ""
     lateinit var updatelog: JsonArray
-    var website = "894222646"
-    var qqgroup = "894222646"
-    var updateMessage="Go into Raphael QQ Group to download latest version."
+    var website = "https://github.com/DearJasker/JaskerFDP"
+    var updateMessage="Fuck you."
     var displayedUpdateScreen=false
     val blockedServers=mutableListOf<String>()
 
