@@ -1,4 +1,4 @@
 git add -u
-git commit -m "Delete FuckPCL and Update MainUI"
+git commit -m "Add WWAC Step and NoRender"
 git push -u -f origin master
 pause

@@ -78,14 +78,11 @@ open class Module : MinecraftInstance(), Listenable {
     }
 
     fun onLoad(){
-        if(this !is ScriptModule){
-            localizedName="%module.$name.name%"
+        if(this !is ScriptModule) {
+            localizedName = "%module.$name.name%"
             values.forEach {
-                it.localedName="%module.$name.value.${it.name}.name%"
+                it.localedName = "%module.$name.value.${it.name}.name%"
             }
-        }
-        if(moduleInfo.defaultOn){
-            state=true
         }
     }
 

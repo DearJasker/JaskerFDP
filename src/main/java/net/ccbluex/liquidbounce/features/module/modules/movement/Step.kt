@@ -29,7 +29,7 @@ class Step : Module() {
      * OPTIONS
      */
 
-    private val modeValue = ListValue("Mode", arrayOf("Vanilla", "Jump", "NCP", "MotionNCP", "OldNCP", "OldAAC", "LAAC", "AAC3.3.4", "AAC4.4.0", "Spartan", "Rewinside"), "NCP")
+    private val modeValue = ListValue("Mode", arrayOf("Vanilla", "Jump", "NCP", "MotionNCP", "OldNCP", "OldAAC", "LAAC", "AAC3.3.4", "AAC4.4.0", "Spartan", "Rewinside", "WWAC"), "NCP")
 
     private val heightValue = FloatValue("Height", 1F, 0.6F, 10F)
     private val jumpHeightValue = FloatValue("JumpMotion", 0.42F, 0.37F, 0.42F).displayable { modeValue.get().equals("Jump", true) }
@@ -153,6 +153,33 @@ class Step : Module() {
                 }
             }
         }
+        when {
+            mode.equals("WWAC", true) && mc.thePlayer.isCollidedHorizontally && !mc.gameSettings.keyBindJump.isKeyDown -> {
+                when {
+                    mc.thePlayer.onGround && couldStep() -> {
+                        fakeJump()
+                        mc.thePlayer.motionY = 0.0
+                        event.y = 0.41999998688698
+                        ncpNextStep = 1
+                    }
+
+                    ncpNextStep == 1 -> {
+                        event.y = 0.7531999805212 - 0.41999998688698
+                        ncpNextStep = 2
+                    }
+
+                    ncpNextStep == 2 -> {
+                        val yaw = MovementUtils.getDirection()
+
+                        event.y = 1.001335979112147 - 0.7531999805212
+                        event.x = -sin(yaw) * 0.7
+                        event.z = cos(yaw) * 0.7
+
+                        ncpNextStep = 0
+                    }
+                }
+            }
+        }
     }
 
     @EventTarget
@@ -193,7 +220,7 @@ class Step : Module() {
         // Set step to default in some cases
         if (!mc.thePlayer.onGround || !timer.hasTimePassed(delayValue.get().toLong()) ||
             mode.equals("Jump", ignoreCase = true) || mode.equals("MotionNCP", ignoreCase = true)
-            || mode.equals("LAAC", ignoreCase = true) || mode.equals("AAC3.3.4", ignoreCase = true)) {
+            || mode.equals("LAAC", ignoreCase = true) || mode.equals("AAC3.3.4", ignoreCase = true) || mode.equals("WWAC", ignoreCase = true)) {
             mc.thePlayer.stepHeight = 0.6F
             event.stepHeight = 0.6F
             return

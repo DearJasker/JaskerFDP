@@ -1,8 +1,3 @@
-/*
- * FDPClient Hacked Client
- * A free open source mixin-based injection hacked client for Minecraft using Minecraft Forge by LiquidBounce.
- * https://github.com/UnlegitMC/FDPClient/
- */
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
 import net.ccbluex.liquidbounce.LiquidBounce
@@ -120,6 +115,7 @@ class KillAura : Module() {
 
     // Bypass
     private val aacValue = BoolValue("AAC", true)
+    private val aacPitchValue = IntegerValue("AAC-Pitch", 15, 0, 90)
 
     // Turn Speed
     private val maxTurnSpeed: FloatValue = object : FloatValue("MaxTurnSpeed", 180f, 0f, 180f) {
@@ -237,7 +233,7 @@ class KillAura : Module() {
                 if(mc.thePlayer.getDistanceToEntityBox(target) < autoBlockRangeValue.get())
                     startBlocking(target, interactAutoBlockValue.get() && (mc.thePlayer.getDistanceToEntityBox(target)<maxRange))
             }
-            
+
             target ?: return
             currentTarget ?: return
 
@@ -640,7 +636,7 @@ class KillAura : Module() {
             // Set target to current entity
             if(mc.thePlayer.getDistanceToEntityBox(entity) < maxRange)
                 target = entity
-            
+
             return
         }
     }
@@ -736,7 +732,7 @@ class KillAura : Module() {
             (Math.random() * (maxTurnSpeed.get() - minTurnSpeed.get()) + minTurnSpeed.get()).toFloat())
 
         if (silentRotationValue.get())
-            RotationUtils.setTargetRotation(limitedRotation, if (aacValue.get()) 15 else 0)
+            RotationUtils.setTargetRotation(limitedRotation, if (aacValue.get()) 90 - aacPitchValue.get() else 0)
         else
             limitedRotation.toPlayer(mc.thePlayer)
 

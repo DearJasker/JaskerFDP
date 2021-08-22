@@ -13,7 +13,7 @@ import java.io.FileOutputStream
 import java.nio.file.Files
 import javax.imageio.ImageIO
 
-class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
+class GuiBackground : GuiScreen() {
 
     companion object {
         var enabled = true
@@ -64,7 +64,7 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
                 LiquidBounce.background = null
                 LiquidBounce.fileManager.backgroundFile.delete()
             }
-            0 -> mc.displayGuiScreen(prevGui)
+            0 -> mc.displayGuiScreen(null)
         }
 
         LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.specialConfig)
@@ -80,7 +80,7 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
 
     override fun keyTyped(typedChar: Char, keyCode: Int) {
         if (Keyboard.KEY_ESCAPE == keyCode) {
-            mc.displayGuiScreen(prevGui)
+            mc.displayGuiScreen(null)
             return
         }
 

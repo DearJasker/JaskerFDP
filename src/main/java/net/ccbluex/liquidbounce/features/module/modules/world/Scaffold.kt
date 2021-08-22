@@ -1,8 +1,3 @@
-/*
- * FDPClient Hacked Client
- * A free open source mixin-based injection hacked client for Minecraft using Minecraft Forge by LiquidBounce.
- * https://github.com/UnlegitMC/FDPClient/
- */
 package net.ccbluex.liquidbounce.features.module.modules.world
 
 import net.ccbluex.liquidbounce.LiquidBounce
@@ -79,7 +74,7 @@ class Scaffold : Module() {
     // Eagle
     private val eagleValue = ListValue("Eagle", arrayOf("Silent", "Normal", "OFF"), "OFF")
     private val blocksToEagleValue = IntegerValue("BlocksToEagle", 0, 0, 10).displayable { !eagleValue.get().equals("OFF",true) }
-    
+
     // Expand
     private val expandLengthValue = IntegerValue("ExpandLength", 5, 1, 6)
 
@@ -427,7 +422,7 @@ class Scaffold : Module() {
     private fun move() {
         when (towerModeValue.get().toLowerCase()) {
             "none" -> {
-                 if (mc.thePlayer.onGround) {
+                if (mc.thePlayer.onGround) {
                     fakeJump()
                     mc.thePlayer.motionY = 0.42
                 }
@@ -909,7 +904,7 @@ class Scaffold : Module() {
     fun getSpeed():Float{
         return (Math.random() * (maxRotationSpeedValue.get() - minRotationSpeedValue.get()) + minRotationSpeedValue.get()).toFloat()
     }
-    
+
     fun roundYaw(rYaw: Float):Float{
         var lrYaw = rYaw
         while(lrYaw>360) {
@@ -920,7 +915,7 @@ class Scaffold : Module() {
         }
         return lrYaw
     }
-    
+
     @EventTarget
     fun onJump(event: JumpEvent) {
         if (towerStatus)

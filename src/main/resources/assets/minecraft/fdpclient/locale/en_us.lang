@@ -265,6 +265,8 @@ module.AutoWeapon.description=Automatically selects the best weapon in your hotb
 module.AutoWeapon.value.SpoofItem.name=SpoofItem
 module.AutoWeapon.value.SpoofTicks.name=SpoofTicks
 
+module.Background.name=BackGround
+
 module.BetterFPS.name=BetterFPS
 module.BetterFPS.description=Make math calculate faster
 module.BetterFPS.value.SinMode.name=SinMode
