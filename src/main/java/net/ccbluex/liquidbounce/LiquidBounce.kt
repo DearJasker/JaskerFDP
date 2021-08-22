@@ -69,7 +69,7 @@ object LiquidBounce {
     // Update information
     var latestVersion = ""
     lateinit var updatelog: JsonArray
-    var website = "https://github.com/DearJasker/JaskerFDP"
+    var website = "JaskerFDP"
     var updateMessage="Fuck you."
     var displayedUpdateScreen=false
     val blockedServers=mutableListOf<String>()

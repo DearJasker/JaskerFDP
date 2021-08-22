@@ -1,4 +1,4 @@
 git add -u
-git commit -m "Add WWAC Step and NoRender"
+git commit -m "AntiVoid TestHypixel Mode and fixing bugs"
 git push -u -f origin master
 pause

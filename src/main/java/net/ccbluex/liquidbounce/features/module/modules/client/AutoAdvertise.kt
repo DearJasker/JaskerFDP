@@ -26,7 +26,7 @@ class AutoAdvertise : Module() {
             override fun run() {
                 waiting=false
                 if(mc.thePlayer!=null){
-                    mc.thePlayer.sendChatMessage("["+ RandomUtils.randomString(3)+"] Try JaskerFDP! Github:${LiquidBounce.website} ["+ RandomUtils.randomString(3)+"]")
+                    mc.thePlayer.sendChatMessage("["+ RandomUtils.randomString(3)+"] Try JaskerFDP! Github:https://github.com/DearJasker/JaskerFDP ["+ RandomUtils.randomString(3)+"]")
                 }
             }
         },2000L)
