@@ -184,6 +184,9 @@ module.KillInsults.value.WaterMark.name=WaterMark
 module.AutoAdvertise.name=AutoAdvertise
 module.AutoAdvertise.description=Keep this on, we need your support
 
+module.AutoAbuse.name=AutoAbuse
+module.AutoAbuse.decription=Auto abuse to other players
+
 module.AutoArmor.name=AutoArmor
 module.AutoArmor.description=Automatically equips the best armor in your inventory
 module.AutoArmor.value.MaxDelay.name=MaxDelay
@@ -266,6 +269,7 @@ module.AutoWeapon.value.SpoofItem.name=SpoofItem
 module.AutoWeapon.value.SpoofTicks.name=SpoofTicks
 
 module.Background.name=BackGround
+module.Background.description=Background settings
 
 module.BetterFPS.name=BetterFPS
 module.BetterFPS.description=Make math calculate faster
