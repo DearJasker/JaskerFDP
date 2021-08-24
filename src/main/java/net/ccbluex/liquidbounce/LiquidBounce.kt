@@ -36,7 +36,7 @@ object LiquidBounce {
     // Client information
     const val CLIENT_NAME = "JaskerFDP"
     const val COLORED_NAME = "§c§lJasker§6§lFDP"
-    const val CLIENT_REAL_VERSION = "082121 Build1401A"
+    const val CLIENT_REAL_VERSION = "082421 Build1801A"
     const val CLIENT_CREATOR = "CCBlueX & UnlegitMC & DearJasker"
     const val MINECRAFT_VERSION = "1.8.9"
 
