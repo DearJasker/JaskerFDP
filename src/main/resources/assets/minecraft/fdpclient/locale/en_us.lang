@@ -265,6 +265,7 @@ module.AutoTool.description=Automatically selects the best tool in your inventor
 
 module.AutoWeapon.name=AutoWeapon
 module.AutoWeapon.description=Automatically selects the best weapon in your hotbar
+module.AutoWeapon.value.OnlySword=OnlySword
 module.AutoWeapon.value.SpoofItem.name=SpoofItem
 module.AutoWeapon.value.SpoofTicks.name=SpoofTicks
 

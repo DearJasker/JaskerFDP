@@ -7,6 +7,7 @@ package net.ccbluex.liquidbounce.utils;
 
 import com.google.gson.JsonObject;
 import net.ccbluex.liquidbounce.LiquidBounce;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.IChatComponent;
 import org.apache.logging.log4j.LogManager;
@@ -52,7 +53,7 @@ public final class ClientUtils extends MinecraftInstance {
     }
 
     public static void setTitle(){
-        Display.setTitle(LiquidBounce.CLIENT_NAME + " " + LiquidBounce.CLIENT_VERSION + " | Mc " + LiquidBounce.MINECRAFT_VERSION);
+        Display.setTitle(LiquidBounce.CLIENT_NAME + " " + LiquidBounce.CLIENT_VERSION + " Chinese | Minecraft " + LiquidBounce.MINECRAFT_VERSION + " | Hello " + Minecraft.getMinecraft().getSession().getUsername() + "! | By " + LiquidBounce.CLIENT_AUTHOR);
     }
 
     public static void disableFastRender() {

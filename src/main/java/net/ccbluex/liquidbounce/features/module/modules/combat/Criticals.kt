@@ -28,7 +28,7 @@ import net.minecraft.stats.StatList
 @ModuleInfo(name = "Criticals", category = ModuleCategory.COMBAT)
 class Criticals : Module() {
 
-    val modeValue = ListValue("Mode", arrayOf("Packet", "NCPPacket", "Hypixel", "Hypixel2","Hypixel3","Minis","AACPacket", "AAC4Hover1", "AAC4Hover2", "AAC4.3.11OldHYT", "NoGround", "Visual", "RedeSkySmartGround", "RedeSkyLowHop", "Hop", "TPHop", "FakeCollide", "TPCollide", "Jump", "LowJump", "Hover1", "Hover2", "Mineplex", "More", "TestMinemora"), "packet")
+    val modeValue = ListValue("Mode", arrayOf("Packet", "NCPPacket", "Hypixel", "Hypixel2","Hypixel3","Minis","AACPacket", "AAC4Hover1", "AAC4Hover2", "AAC4.3.11OldHYT", "NoGround", "Visual", "RedeSkySmartGround", "RedeSkyLowHop", "Hop", "TPHop", "FakeCollide", "TPCollide", "Jump", "LowJump", "Hover1", "Hover2", "Mineplex", "More", "TestMinemora", "Spartan", "Horizon", "Jigsaw"), "packet")
     val delayValue = IntegerValue("Delay", 0, 0, 500)
     private val hurtTimeValue = IntegerValue("HurtTime", 10, 0, 10)
     private val lookValue = BoolValue("UseC06Packet", false)
@@ -239,6 +239,35 @@ class Criticals : Module() {
                 "jump" -> mc.thePlayer.motionY = 0.42
                 "lowjump" -> mc.thePlayer.motionY = 0.3425
                 "redeskylowhop" -> mc.thePlayer.motionY = 0.35
+                "Spartan" -> {
+                    if(lookValue.get()){
+                        mc.thePlayer.sendQueue.addToSendQueue(C06PacketPlayerPosLook(x, y + 0.4, z, yaw, pitch, true))
+                        mc.thePlayer.sendQueue.addToSendQueue(C06PacketPlayerPosLook(x, y, z, yaw, pitch, false))
+                    }else{
+                        mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(x, y + 0.4, z,true))
+                        mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(x, y, z, false))
+                    }
+                }
+                "Horizon" -> {
+                    if(mc.thePlayer.motionX == 0.0 && mc.thePlayer.motionZ == 0.0) {
+                        if(lookValue.get()){
+                            mc.thePlayer.sendQueue.addToSendQueue(C06PacketPlayerPosLook(x, y + 0.00000000255, z, yaw, pitch, true))
+                            mc.thePlayer.sendQueue.addToSendQueue(C06PacketPlayerPosLook(x, y, z, yaw, pitch, false))
+                        }else{
+                            mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(x, y + 0.00000000255, z,true))
+                            mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(x, y, z, false))
+                        }
+                    }
+                }
+                "Jigsaw" -> {
+                    if(lookValue.get()){
+                        mc.thePlayer.sendQueue.addToSendQueue(C03PacketPlayer.C06PacketPlayerPosLook(x, y + 0.0625, z, yaw, pitch, true))
+                        mc.thePlayer.sendQueue.addToSendQueue(C03PacketPlayer.C06PacketPlayerPosLook(x, y, z, yaw, pitch, false))
+                    }else{
+                        mc.thePlayer.sendQueue.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(x, y + 0.0625, z, true))
+                        mc.thePlayer.sendQueue.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(x, y, z, false))
+                    }
+                }
             }
             mc.thePlayer.onCriticalHit(entity)
             msTimer.reset()
