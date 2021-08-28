@@ -6,7 +6,7 @@
 ![Minecraft](https://img.shields.io/badge/game-Minecraft-brightgreen)  
 A free mixin-based injection hacked-client for Minecraft using Minecraft Forge based on LiquidBounce and FDPClient.
 
-QQGroup: 894222646
+JaskerFDP has stopped updating. You can use [FDPClient](https://github.com/UnlegitMC/FDPClient) to continue to enjoy the game!
 
 ## Issues
 If you notice any bugs or missing features, you can let us know by opening an issue [here](https://github.com/UnlegitMC/FDPClient/issues).
